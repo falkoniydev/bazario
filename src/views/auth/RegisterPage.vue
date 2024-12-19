@@ -110,7 +110,7 @@ const handleRegister = () => {
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAuthStore } from '../../stores/authStore'
-import { _RouterLinkI, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
 
