@@ -3,7 +3,10 @@
   <header class="bg-white shadow-md fixed w-full z-50">
     <nav class="container mx-auto flex justify-between items-center py-4 px-6">
       <!-- Logo -->
-      <router-link to="/" class="text-2xl font-bold text-[#1C4D9C]">BAZARIO</router-link>
+      <router-link to="/" class="text-2xl font-bold text-[#1C4D9C] flex items-center gap-1">
+        <img src="/logo.png" width="50" height="50" alt="LOGO" />
+        <span>BAZARIO</span>
+      </router-link>
 
       <!-- NavLinks - Desktop -->
       <ul class="hidden md:flex space-x-8 font-medium text-[#1C4D9C]">
