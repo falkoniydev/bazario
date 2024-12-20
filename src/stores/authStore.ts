@@ -57,7 +57,6 @@ export const useAuthStore = defineStore('authStore', {
           localStorage.setItem('authToken', this.token as string)
 
           axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
-          alert('Login muvaffaqiyatli!')
         } else {
           throw new Error('Login yoki parol xato!')
         }
@@ -75,7 +74,6 @@ export const useAuthStore = defineStore('authStore', {
       this.token = null
       localStorage.removeItem('authToken')
       delete axios.defaults.headers.common['Authorization']
-      alert('Hisobdan chiqildi.')
     },
     deleteInfo() {
       localStorage.removeItem('registeredUsers')

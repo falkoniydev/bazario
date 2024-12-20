@@ -56,7 +56,7 @@ const handleRegister = () => {
 </script> -->
 
 <template>
-  <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded">
+  <div class="max-w-md mx-auto p-6 bg-white shadow-lg rounded pt-[28px] mt-[150px] relative">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#1C4D9C]">Ro'yxatdan o'tish</h2>
     <form @submit.prevent="handleRegister">
       <!-- Username -->
@@ -102,8 +102,14 @@ const handleRegister = () => {
     <!-- Navigate to Login -->
     <p class="text-center mt-4">
       Hisobingiz bormi?
-      <router-link to="/login" class="text-[#EE6027]">Kirish</router-link>
+      <router-link to="/auth/login" class="text-[#EE6027]">Kirish</router-link>
     </p>
+
+    <div class="absolute top-5 right-5">
+      <button @click="backHome">
+        <XMarkIcon class="text-[48px] text-blue-950 w-10 h-10" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -111,8 +117,11 @@ const handleRegister = () => {
 import { ref } from 'vue'
 import { useAuthStore } from '../../stores/authStore'
 import { useRouter } from 'vue-router'
+import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { useToast } from 'vue-toastification'
 
 const authStore = useAuthStore()
+const toast = useToast()
 
 const username = ref('')
 const email = ref('')
@@ -124,6 +133,11 @@ const handleRegister = () => {
   username.value = ''
   email.value = ''
   password.value = ''
-  router.push('/login')
+  router.push('/auth/login')
+  toast.success("Muvaffaqiyatli ro'yxatdan o'tdingiz!")
+}
+
+const backHome = () => {
+  router.push('/')
 }
 </script>

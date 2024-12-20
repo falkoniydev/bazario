@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-10 p-6 bg-white shadow-lg rounded profile">
+  <div class="container mx-auto p-6 bg-white shadow-lg rounded profile pt-[28px] mt-[150px]">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#1C4D9C]">Profil Ma'lumotlari</h2>
     <div class="text-center mb-4">
       <img

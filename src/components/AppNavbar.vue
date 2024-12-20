@@ -46,7 +46,7 @@
             v-if="totalItems > 0"
             class="absolute top-0 right-0 inline-block w-5 h-5 bg-[#EE6027] text-white text-xs font-bold text-center rounded-full"
           >
-            {{ totalItems }}
+            {{ isLoggedIn ? totalItems : '' }}
           </span>
         </router-link>
 
@@ -222,7 +222,7 @@ const logout = () => {
   localStorage.removeItem('authToken')
   localStorage.removeItem('userData')
   isLoggedIn.value = false
-  router.push('/auth/login')
+  router.push('/')
 }
 
 // Tilni o'zgartirish

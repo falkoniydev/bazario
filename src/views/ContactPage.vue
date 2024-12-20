@@ -87,6 +87,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useToast } from 'vue-toastification'
+
+// Toastr-ga imkon berish
+const toast = useToast()
 
 // Form ma'lumotlari uchun reaktiv o'zgaruvchi
 const formData = ref({
@@ -97,9 +101,7 @@ const formData = ref({
 
 // Xabar yuborish funksiyasi
 const handleSubmit = () => {
-  alert(
-    `Xabar yuborildi:\nIsm: ${formData.value.name}\nEmail: ${formData.value.email}\nXabar: ${formData.value.message}`,
-  )
+  toast.success(`Xabar hamjamiyat a'zolariga yuborildi`)
   formData.value.name = ''
   formData.value.email = ''
   formData.value.message = ''
