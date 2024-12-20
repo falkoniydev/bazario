@@ -35,6 +35,8 @@ onMounted(() => {
 
 <style scoped>
 .profile {
-  padding-top: 200px !important;
+  margin: 200px auto !important;
+  max-width: 600px !important;
+  width: 100%;
 }
 </style>

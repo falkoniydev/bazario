@@ -1,11 +1,14 @@
 <template>
   <!-- Navbar -->
-  <header class="bg-white shadow-md fixed w-full z-50">
+  <header class="bg-white shadow-md fixed top-0 w-full z-50 bg-opacity-50">
     <nav class="container mx-auto flex justify-between items-center py-4 px-6">
       <!-- Logo -->
-      <router-link to="/" class="text-2xl font-bold text-[#1C4D9C] flex items-center gap-1">
-        <img src="/logo.png" width="50" height="50" alt="LOGO" />
-        <span>BAZARIO</span>
+      <router-link
+        to="/"
+        class="text-lg md:text-2xl font-bold text-[#1C4D9C] flex items-center gap-1"
+      >
+        <img src="/logo.png" alt="LOGO" class="w-[30px] h-[30px] md:w-[50px] md:h-[50px]" />
+        <span class="">BAZARIO</span>
       </router-link>
 
       <!-- NavLinks - Desktop -->
@@ -35,7 +38,7 @@
         </li>
       </ul>
 
-      <section class="flex items-center gap-4">
+      <section class="hidden sm:flex items-center gap-4">
         <!-- Korzin -->
         <router-link to="/user/cart" class="relative">
           <!-- Savatcha ikonkasi -->
@@ -51,7 +54,7 @@
         </router-link>
 
         <!-- Tilni o'zgartirish -->
-        <div class="relative inline-block text-left">
+        <div class="relative text-left hidden sm:inline-block">
           <!-- Tanlangan til tugmasi -->
           <button
             @click="toggleDropdown"
@@ -91,7 +94,7 @@
         </div>
 
         <!-- Profile Dropdown -->
-        <div class="relative" v-if="isLoggedIn">
+        <div class="relative hidden sm:flex" v-if="isLoggedIn">
           <button @click="toogleProfile" class="focus:outline-none">
             <img
               v-if="user.image"
@@ -103,7 +106,7 @@
           </button>
           <div
             v-if="isProfileOpen"
-            class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg"
+            class="absolute right-0 mt-10 w-48 bg-white border rounded-lg shadow-lg"
           >
             <ul class="py-2">
               <li>
@@ -127,7 +130,7 @@
         <!-- Login/Signup Modal -->
         <div
           v-if="!isLoggedIn"
-          class="flex items-center justify-center gap-2 text-[#164b89] transition-all font-bold"
+          class="hidden sm:flex items-center justify-center gap-2 text-[#164b89] transition-all font-bold"
         >
           <RouterLink to="/auth/login" class="hover:text-orange-500">Login</RouterLink>
           <RouterLink to="/auth/register" class="hover:text-orange-500">Sign Up</RouterLink>

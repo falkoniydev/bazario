@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-page bg-gray-100 min-h-screen py-16 contacts">
+  <div class="contact-page bg-[#e0b76f] min-h-screen py-16 contacts">
     <div class="container mx-auto px-6">
       <!-- Sarlavha -->
       <h1 class="text-4xl font-bold text-center text-[#1C4D9C] mb-12">Biz bilan bog'laning</h1>

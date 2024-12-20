@@ -42,35 +42,58 @@
       />
     </div>
 
+    <!-- Loading Spinner -->
+    <div v-if="loading" class="flex justify-center items-center h-64">
+      <svg
+        class="animate-spin -ml-1 mr-3 h-10 w-10 text-[#1C4D9C]"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8h8a8 8 0 01-8 8z"></path>
+      </svg>
+    </div>
+
     <!-- Mahsulotlar Ro‘yxati -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
     </div>
 
     <!-- Natija Topilmasa -->
-    <div v-if="filteredProducts.length === 0" class="text-center text-gray-500">
+    <div v-if="!loading && filteredProducts.length === 0" class="text-center text-gray-500">
       <p>Hech qanday mahsulot topilmadi!</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { fetchProducts } from '@/services/api'
+import { computed, ref } from 'vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { ChevronDownIcon } from '@heroicons/vue/24/solid'
-import type { ProductCardTypes } from '@/types/userTypes'
+import { useDataStore } from '@/services/dataStore'
 
-// Qidiruv uchun o‘zgaruvchi
+// Mahsulotlar va yuklanish holati uchun o'zgaruvchilar
+const dataStore = useDataStore()
+const products = computed(() => dataStore.products) // Data store'dan mahsulotlar
+const loading = computed(() => dataStore.loading) // Yuklanish holati
+const categories = computed(() => dataStore.categories) // Kategoriyalarni store'dan olish
+
+// Tanlangan kategoriya va qidiruv
+const selectedCategory = ref<string | null>(null)
 const searchQuery = ref('')
 
-// Mahsulotlar va kategoriyalar uchun o‘zgaruvchilar
-const products = ref<ProductCardTypes[]>([])
-const categories = ref<string[]>([])
-const selectedCategory = ref<string | null>(null)
+// Dropdown ochiq/yopiq holati
 const dropdownOpen = ref(false)
 
-// Dropdownni boshqarish
+// Dropdownni boshqarish funksiyasi
 const toggleDropdown = () => {
   dropdownOpen.value = !dropdownOpen.value
 }
@@ -80,16 +103,7 @@ const selectCategory = (category: string | null) => {
   dropdownOpen.value = false
 }
 
-// API orqali ma’lumotlarni olish
-onMounted(async () => {
-  products.value = await fetchProducts()
-
-  // Unikal kategoriyalarni aniqlash
-  const allCategories = products.value.map((product) => product.category)
-  categories.value = Array.from(new Set(allCategories)) // Takrorlanmaydigan kategoriyalar
-})
-
-// Qidiruv va kategoriya filterini hisoblash
+// Filterlangan mahsulotlarni hisoblash
 const filteredProducts = computed(() => {
   return products.value.filter((product) => {
     const matchesCategory =
@@ -98,10 +112,15 @@ const filteredProducts = computed(() => {
     return matchesCategory && matchesSearch
   })
 })
+
+// Ma'lumotlarni bir marta yuklash
+if (!dataStore.products.length) {
+  dataStore.loadData()
+}
 </script>
 
 <style scoped>
 .products {
-  padding-top: 150px !important;
+  padding-top: 150px;
 }
 </style>

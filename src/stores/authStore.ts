@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { useRouter } from 'vue-router'
 import type { RegisteredUser } from '@/types/userTypes'
 
 export const useAuthStore = defineStore('authStore', {

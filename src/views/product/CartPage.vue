@@ -32,8 +32,8 @@
           />
 
           <!-- Mahsulotni o'chirish -->
-          <button @click="removeFromCart(item.id)" class="text-red-500 hover:text-red-700">
-            O'chirish
+          <button @click="removeFromCart(item.id)" class="text-red-500 hover:text-red-700 ml-3">
+            <XMarkIcon class="w-[30px] h-[30px]" />
           </button>
         </div>
       </div>
@@ -54,6 +54,7 @@
 
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cartStore'
+import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'

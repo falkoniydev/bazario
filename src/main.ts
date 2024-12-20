@@ -8,11 +8,14 @@ import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+import { useDataStore } from './services/dataStore'
 
 const app = createApp(App)
 
 app.use(router)
 app.use(createPinia())
+const dataStore = useDataStore() // Ma'lumotlarni bir marta yuklash
+dataStore.loadData()
 app.use(i18n) // i18n qo‘shamiz
 app.use(Toast, {
   position: 'bottom-right',

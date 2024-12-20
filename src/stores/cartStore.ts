@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
 import type { ProductCardTypes } from '@/types/userTypes'
 
 interface CartItem extends ProductCardTypes {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-6 bg-white shadow-lg rounded settings pt-[28px] mt-[200px]">
+  <div class="container mx-auto p-6 bg-white shadow-lg rounded settings">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#1C4D9C]">Sozlamalar</h2>
     <form @submit.prevent="saveChanges">
       <input
@@ -32,6 +32,15 @@ const saveChanges = () => {
 
 <style scoped>
 .settings {
-  padding-top: 200px !important;
+  padding: 28px;
+  margin: 200px auto;
+  max-width: 600px !important;
+  width: 100%;
 }
+
+/* @media screen and (max-width: 400px) {
+  .settings {
+    margin: 100px 28px 50px 28px !important;
+  }
+} */
 </style>
