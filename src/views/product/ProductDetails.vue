@@ -56,7 +56,7 @@ import { ArrowLeftCircleIcon } from '@heroicons/vue/24/outline'
 const route = useRoute()
 const router = useRouter()
 const productId = route.params.id
-const product = ref<ProductCardTypes | null>(null)
+const product = ref<ProductCardTypes | undefined>(undefined)
 const toast = useToast()
 
 // API orqali mahsulotni olish
