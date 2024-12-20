@@ -69,7 +69,7 @@ const handleLogin = () => {
     <p v-if="authStore.error" class="text-red-500 text-center mt-4">{{ authStore.error }}</p>
     <p class="text-center mt-4">
       Hisobingiz yo'qmi?
-      <router-link to="/register" class="text-[#EE6027]">Ro'yxatdan o'tish</router-link>
+      <router-link to="/auth/register" class="text-[#EE6027]">Ro'yxatdan o'tish</router-link>
     </p>
 
     <!-- <button @click="clearStorage" class="border border-spacing-1 bg-red-400">
